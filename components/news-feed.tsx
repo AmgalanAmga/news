@@ -39,8 +39,8 @@ export default function NewsFeed({ articles }: { articles: Article[] }) {
       </div>
       {filteredArticles.length > 0 ? (
         <div className="grid grid-cols-1 gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {filteredArticles.map((article, index) => (
+            <ArticleCard key={article.id} article={article} loading={index < 3 ? "eager" : "lazy"} />
           ))}
         </div>
       ) : (

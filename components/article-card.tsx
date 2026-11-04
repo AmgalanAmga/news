@@ -4,7 +4,12 @@ import { categoryColors } from "@/lib/category-colors";
 import { type Article, formatDate, readingTime } from "@/lib/news";
 
 
-export default function ArticleCard({ article }: { article: Article }) {
+type ArticleCardProps = {
+  article: Article;
+  loading?: "eager" | "lazy";
+};
+
+export default function ArticleCard({ article, loading = "lazy" }: ArticleCardProps) {
   const categoryColor = categoryColors[article.category] ?? "bg-slate-50 text-slate-700 ring-slate-200";
   const initials = article.author.split(" ").map((part) => part[0]).join("");
 
@@ -20,6 +25,7 @@ export default function ArticleCard({ article }: { article: Article }) {
             alt={article.imageAlt}
             className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
             fill
+            loading={loading}
             sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
             unoptimized
           />

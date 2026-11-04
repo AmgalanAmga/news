@@ -95,7 +95,7 @@ export default async function NewsDetail({ params }: Props) {
               alt={article.imageAlt}
               className="object-cover"
               fill
-              priority
+              loading="eager"
               unoptimized
               sizes="(max-width: 1279px) 100vw, 1184px"
             />

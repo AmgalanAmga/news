@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en" className="scroll-pt-7 scroll-smooth motion-reduce:scroll-auto">
+  return <html lang="en" data-scroll-behavior="smooth" className="scroll-pt-7 scroll-smooth motion-reduce:scroll-auto">
     <body className="bg-paper font-sans text-ink antialiased selection:bg-orange-200">
       <a className="absolute -top-20 left-4 z-50 bg-ink p-3.5 text-white focus:top-4" href="#main">Skip to content</a>
       {children}

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import ArticleCard from "@/components/article-card";
-import { type Article, categories } from "@/lib/news";
+import { categories } from "@/lib/news";
 
 export default function NewsFeed({ articles }: { articles: Article[] }) {
   const [category, setCategory] = useState("All stories");
-  // Derived data: filter the original array rather than keeping a second state.
+
   const filteredArticles = articles.filter((article) => category === "All stories" || article.category === category);
 
   return (

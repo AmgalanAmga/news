@@ -8,7 +8,6 @@ import { articles, formatDate, readingTime } from "@/lib/news";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Build a page for each article using its URL-friendly slug.
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
 }
@@ -26,7 +25,10 @@ export default async function NewsDetail({ params }: Props) {
   const related = articles.filter((item) => item.category === article.category && item.id !== article.id).slice(0, 3);
 
   const categoryColor = categoryColors[article.category] ?? "bg-slate-50 text-slate-700 ring-slate-200";
-  const initials = article.author.split(" ").map((name) => name[0]).join("");
+  const initials = article.author
+    .split(" ")
+    .map((name) => name[0])
+    .join("");
 
   return (
     <main id="main" className="mx-auto w-full max-w-7xl px-5 pt-6 sm:px-8 lg:px-12">
@@ -42,23 +44,17 @@ export default async function NewsDetail({ params }: Props) {
       <article>
         <header className="mx-auto max-w-5xl pt-10 pb-8 sm:pt-14 sm:pb-10">
           <div className="mb-5 flex items-center gap-3">
-            <span className={`rounded-md px-3 py-1.5 text-xs font-semibold ring-1 ring-inset ${categoryColor}`}>
-              {article.category}
-            </span>
+            <span className={`rounded-md px-3 py-1.5 text-xs font-semibold ring-1 ring-inset ${categoryColor}`}>{article.category}</span>
             <span className="h-px w-10 bg-stone-300" aria-hidden="true" />
             <span className="text-[11px] font-medium uppercase tracking-widest text-stone-500">The Daily</span>
           </div>
 
-          <h1 className="max-w-4xl text-4xl leading-[1.12] font-bold tracking-tight text-balance text-stone-950 sm:text-5xl lg:text-6xl">
-            {article.title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-pretty text-stone-600 sm:mt-6 sm:text-xl">
-            {article.description}
-          </p>
+          <h1 className="max-w-4xl text-4xl leading-[1.12] font-bold tracking-tight text-balance text-stone-950 sm:text-5xl lg:text-6xl">{article.title}</h1>
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-pretty text-stone-600 sm:mt-6 sm:text-xl">{article.description}</p>
 
           <div className="mt-8 flex flex-col gap-5 border-t border-stone-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex min-w-0 items-center gap-3.5">
-              <span className={`inline-flex size-12 shrink-0 items-center justify-center rounded-2xl text-sm font-bold ring-1 ring-inset ${categoryColor}`} aria-hidden="true">
+              <span className={`inline-flex size-12 shrink-0 items-center justify-center rounded-2xl text-sm font-bold ring-1 ring-inset ${categoryColor}`}>
                 {initials}
               </span>
               <div className="min-w-0">
@@ -127,16 +123,17 @@ export default async function NewsDetail({ params }: Props) {
             </div>
           </div>
 
-          <p className="mt-4 px-2 text-center text-[11px] leading-relaxed text-stone-500">
-            Fictional sample story · The Daily learning edition
-          </p>
+          <p className="mt-4 px-2 text-center text-[11px] leading-relaxed text-stone-500">Fictional sample story · The Daily learning edition</p>
 
           <div className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-orange-100 bg-orange-50/70 p-6 sm:flex-row sm:items-center">
             <div>
               <p className="text-lg font-semibold tracking-tight text-stone-900">A little more curiosity?</p>
               <p className="mt-1 text-sm text-stone-600">Your next good read is just around the corner.</p>
             </div>
-            <Link href="/#latest" className="inline-flex shrink-0 items-center gap-3 rounded-full bg-ink px-5 py-3 text-xs font-semibold text-white transition-colors hover:bg-accent">
+            <Link
+              href="/#latest"
+              className="inline-flex shrink-0 items-center gap-3 rounded-full bg-ink px-5 py-3 text-xs font-semibold text-white transition-colors hover:bg-accent"
+            >
               All stories <span aria-hidden="true">↗</span>
             </Link>
           </div>
@@ -147,14 +144,16 @@ export default async function NewsDetail({ params }: Props) {
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-accent">Keep your curiosity going</p>
-            <h2 id="related-heading" className="text-3xl font-bold tracking-tight text-stone-900">More to discover<span className="text-accent">.</span></h2>
+            <h2 id="related-heading" className="text-3xl font-bold tracking-tight text-stone-900">
+              More to discover<span className="text-accent">.</span>
+            </h2>
           </div>
-          <span className={`rounded-full px-3 py-1.5 text-xs font-medium ring-1 ring-inset ${categoryColor}`}>
-            More in {article.category}
-          </span>
+          <span className={`rounded-full px-3 py-1.5 text-xs font-medium ring-1 ring-inset ${categoryColor}`}>More in {article.category}</span>
         </div>
         <div className="grid grid-cols-1 gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {related.map((item) => <ArticleCard key={item.id} article={item} />)}
+          {related.map((item) => (
+            <ArticleCard key={item.id} article={item} />
+          ))}
         </div>
       </section>
     </main>

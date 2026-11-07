@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { formatDate, readingTime } from "@/lib/news";
 import { categoryColors } from "@/lib/category-colors";
-import { type Article, formatDate, readingTime } from "@/lib/news";
-
 
 type ArticleCardProps = {
   article: Article;
@@ -11,7 +10,10 @@ type ArticleCardProps = {
 
 export default function ArticleCard({ article, loading = "lazy" }: ArticleCardProps) {
   const categoryColor = categoryColors[article.category] ?? "bg-slate-50 text-slate-700 ring-slate-200";
-  const initials = article.author.split(" ").map((part) => part[0]).join("");
+  const initials = article.author
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
 
   return (
     <article className="h-full min-w-0">
@@ -30,7 +32,9 @@ export default function ArticleCard({ article, loading = "lazy" }: ArticleCardPr
             unoptimized
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-transparent" aria-hidden="true" />
-          <span className={`absolute top-4 left-4 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider shadow-sm ring-1 ring-inset ${categoryColor}`}>
+          <span
+            className={`absolute top-4 left-4 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider shadow-sm ring-1 ring-inset ${categoryColor}`}
+          >
             {article.category}
           </span>
           <span className="absolute bottom-4 left-4 flex items-center gap-1.5 text-xs font-medium text-white">
@@ -46,13 +50,14 @@ export default function ArticleCard({ article, loading = "lazy" }: ArticleCardPr
           <h3 className="text-xl leading-snug font-bold tracking-tight text-stone-900 transition-colors group-hover:text-accent group-focus-visible:text-accent motion-reduce:transition-none">
             {article.title}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-stone-600">
-            {article.description}
-          </p>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">{article.description}</p>
 
           <div className="mt-auto pt-6">
             <div className="flex items-center gap-3 border-t border-stone-100 pt-4">
-              <span className={`inline-flex size-10 shrink-0 items-center justify-center rounded-full text-xs font-bold ring-1 ring-inset ${categoryColor}`} aria-hidden="true">
+              <span
+                className={`inline-flex size-10 shrink-0 items-center justify-center rounded-full text-xs font-bold ring-1 ring-inset ${categoryColor}`}
+                aria-hidden="true"
+              >
                 {initials}
               </span>
               <div className="min-w-0 flex-1">
@@ -61,7 +66,10 @@ export default function ArticleCard({ article, loading = "lazy" }: ArticleCardPr
                   {formatDate(article.date)}
                 </time>
               </div>
-              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-orange-50 text-accent transition-colors group-hover:bg-accent group-hover:text-white group-focus-visible:bg-accent group-focus-visible:text-white motion-reduce:transition-none" aria-hidden="true">
+              <span
+                className="grid size-9 shrink-0 place-items-center rounded-full bg-orange-50 text-accent transition-colors group-hover:bg-accent group-hover:text-white group-focus-visible:bg-accent group-focus-visible:text-white motion-reduce:transition-none"
+                aria-hidden="true"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <path d="M7 17 17 7M7 7h10v10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

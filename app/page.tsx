@@ -1,5 +1,5 @@
-import NewsFeed from "@/components/news-feed";
 import { articles } from "@/lib/news";
+import NewsFeed from "@/components/news-feed";
 
 export default function Home() {
   return (

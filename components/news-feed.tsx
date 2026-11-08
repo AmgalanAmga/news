@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import ArticleCard from "@/components/article-card";
 import { categories } from "@/lib/news";
+import ArticleCard from "@/components/article-card";
 
 export default function NewsFeed({ articles }: { articles: Article[] }) {
   const [category, setCategory] = useState("All stories");

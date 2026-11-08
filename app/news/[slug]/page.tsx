@@ -15,7 +15,19 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = articles.find((article) => article.slug === slug);
-  return { title: article?.title ?? "Story not found", description: article?.description };
+  if (!article) notFound();
+
+  return {
+    title: article.title,
+    description: article.description,
+    openGraph: {
+      type: "article",
+      siteName: "The Daily",
+      title: article.title,
+      description: article.description,
+      images: [{ url: article.image, alt: article.imageAlt }],
+    },
+  };
 }
 
 export default async function NewsDetail({ params }: Props) {

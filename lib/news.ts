@@ -13,5 +13,5 @@ export const formatDate = (date: string) => {
 };
 
 export const readingTime = (article: Article) => {
-  return Math.max(1, Math.ceil(article.content.join(" ").split(/\s+/).length / 200));
+  return Math.max(1, Math.ceil(article.content.join(" ").split(" ").length / 200));
 };
